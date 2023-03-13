@@ -1,6 +1,3 @@
-// C++ code
-//#include "PinChangeInt.h"
-
 const byte Led = 12;
 const byte timer_Led = 10;
 const byte button1 = 2;
