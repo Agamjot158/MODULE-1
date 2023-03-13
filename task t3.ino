@@ -21,7 +21,7 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt (button1), button_1, CHANGE);
   attachInterrupt(digitalPinToInterrupt(button2), button_2, CHANGE);
-  //attachPinChangeInterrupt(button3, Interrupt3, RISING);
+
   
   PCICR |= B00000001;
   PCMSK0 |= B00000001;
@@ -37,7 +37,7 @@ void setup() {
 void loop() {
 
   delay(50);
-  // put your main code here, to run repeatedly:
+  
 
 }
 
