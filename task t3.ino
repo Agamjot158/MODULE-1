@@ -15,26 +15,14 @@ void setup() {
   pinMode(Led, OUTPUT);
   pinMode(timer_Led, OUTPUT);
   
-
   attachInterrupt(digitalPinToInterrupt (button1), button_1, CHANGE);
   attachInterrupt(digitalPinToInterrupt(button2), button_2, CHANGE);
-
-  
-  PCICR |= B00000001;
-  PCMSK0 |= B00000001;
-  
-  TCCR1A = 0;
-  TCCR1B = 0;
-  timer1_compare_match = 31249;
-  TCNT1 = timer1_compare_match;
-  TCCR1B |= (1 << CS12);
-  TIMSK1 |= (1 << OCIE1A);
+   
 }
 
 void loop() {
 
   delay(50);
-  
 
 }
 
