@@ -1,6 +1,3 @@
-// C++ code
-//#include "PinChangeInt.h"
-
 const byte Led = 12;
 const byte timer_Led = 10;
 const byte button1 = 2;
@@ -21,24 +18,34 @@ void setup() {
 
   attachInterrupt(digitalPinToInterrupt (button1), button_1, CHANGE);
   attachInterrupt(digitalPinToInterrupt(button2), button_2, CHANGE);
-  //attachPinChangeInterrupt(button3, Interrupt3, RISING);
+ 
   
-  PCICR |= B00000001;
-  PCMSK0 |= B00000001;
+    TCCR1A = 0;
+
+ 
+  TCCR1B &= ~(1<<WGM13);   
+  TCCR1B |= (1<< WGM12);   
+
+  TCCR1B |= (1<< CS12);   //1
+  TCCR1B &= ~(1<<CS11);   //0
+  TCCR1B |= (1<< CS10);   //1
+
   
-  TCCR1A = 0;
-  TCCR1B = 0;
-  timer1_compare_match = 31249;
-  TCNT1 = timer1_compare_match;
-  TCCR1B |= (1 << CS12);
-  TIMSK1 |= (1 << OCIE1A);
+  TCNT1 = t1_load;
+  OCR1A = t1_compare;
+
+  
+  TIMSK1 = (1 << OCIE1A);
+
+  
+  sei(); 
+  
 }
 
 void loop() {
 
   delay(50);
-  // put your main code here, to run repeatedly:
-
+ 
 }
 
 void button_2()
