@@ -1,6 +1,3 @@
-// C++ code
-//
-
 const uint8_t BTN_PIN = 2; // Button pin number
 const uint8_t LED_PIN = 8; // LED pin number
 
