@@ -4,7 +4,7 @@ const byte button1 = 2;
 const byte button2 = 3;
 const byte button3 = 4;
 bool LedState = false;
-int timer1_compare_match;
+int timer1_compare_match = 31249;
 
 void setup() {
  
@@ -19,20 +19,11 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt (button1), button_1, CHANGE);
   attachInterrupt(digitalPinToInterrupt(button2), button_2, CHANGE);
  
-  
-    TCCR1A = 0;
-
  
-  TCCR1B &= ~(1<<WGM13);   
-  TCCR1B |= (1<< WGM12);   
-
+  TCCR1A = 0;   
+  TCCR1B = 0;   
+  TCNT1 = timer1_compare_match;
   TCCR1B |= (1<< CS12);   //1
-  TCCR1B &= ~(1<<CS11);   //0
-  TCCR1B |= (1<< CS10);   //1
-
-  
-  TCNT1 = t1_load;
-  OCR1A = t1_compare;
 
   
   TIMSK1 = (1 << OCIE1A);
